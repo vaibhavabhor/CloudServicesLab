@@ -59,11 +59,6 @@
 		$('#loginMenu').css('display','block');
 	}
 	
-// 		IN.API.Connections("me")
-// 	    .fields("id", "firstName", "lastName", "headline", "pictureUrl")
-// 	    .result(showConnections)
-// 		.error(connectionError);
-
 	function onLinkedInAuth() {
 		IN.API.Profile("me")
 		.fields("id", "firstName", "lastName", "headline", "location", "industry", "pictureUrl", "emailAddress")
@@ -72,11 +67,6 @@
 	
 	function displayProfile(profiles) {
 		var member = profiles.values[0];
-		
-// 		$('#loginOptions').css('display', 'none');
-// 		$('#userProfile').css('display', 'block');
-// 		$('#profile').html("<img src=" + member.pictureUrl + "></img><br/><div id=\"" + member.id + "\">Hello <b>" +  member.firstName + " " + member.lastName + "</b><br/><br/><div>You are currently <b>'" + member.headline + "'</b> and located in " + member.location.name + ", " + member.location.country.code.toUpperCase() + ".<br/><br/> Your primary industry is <b>" + member.industry + "</b></div></div>");
-		
 		var email = member.emailAddress;
 		$.ajax({
 			url : "checkUserRegistered.htm",
@@ -114,7 +104,7 @@
 <body>
 	<div class="navbar navbar-inverse navbar-static-top">
 		<div id="headerNav" class="navbar-inner">
-			<a class="brand" href="/project-vars/"><span style="color: green; margin: 0px 10px 0px 10px;">MakeItUsable<span style="color: red;">!</span></span></a>
+			<a class="brand" href="/project-vars/"><span style="color: green; margin: 0px 10px 0px 10px;">New Apple Store<span style="color: red;">!</span></span></a>
 			<% if(session.getAttribute("user") != null) { %>
 			<ul class="nav">
 				<li><a href="/project-vars/viewProjects.htm" style="color: white;">View Projects</a></li>
@@ -149,7 +139,7 @@
 
 	<div id="container" style="padding-top: 40px;" align="center">
 		<div class="container-fluid">
-			<div id="loginOptions" style="margin: 80px 0px 0px 50px;">
+			<div id="loginOptions" style="margin: 80px 0px 0px 600px;">
 				<div class="span1"></div>
 				<div class="span5">
 					<div style="background-color: ghostwhite; -webkit-box-shadow: 3px 0px 5px #888888; -moz-box-shadow: 3px 0px 5px #888888; box-shadow: 3px 0px 5px #888888; padding: 30px;">
@@ -170,34 +160,17 @@
 						</table>
 					</div>
 				</div>
-				
-				<div class="divider-vertical"></div>
-				<div class="span1" style="margin-top: 80px;">
-					<h3> OR </h3>
-				</div>
-				<div class="divider-vertical"></div>
-				
-				<div class="span5">
-					<div style="background-color: ghostwhite; -webkit-box-shadow: 3px 0px 5px #888888; -moz-box-shadow: 3px 0px 5px #888888; box-shadow: 3px 0px 5px #888888; padding: 30px;">
-						<h3> Sign In with LinkedIn </h3>
-						<div id="linkedInLogin" style="margin: 30px 0px 77px 0px;">
-							<script type="IN/Login"></script>
-						</div>
-					</div>
-				</div>
-			</div>
-			
+											
 			<div id="userProfile" style="margin: 80px 0px 0px 50px; display: none;">
 				<div id="profile" class="span4"></div>
 				<div id="connections" class="span4"></div>
 			</div>
-			
 		</div>
 	</div>
 
 	<div class="navbar navbar-inverse navbar-fixed-bottom">
 		<div class="navbar-inner" style="min-height: 70px;">
-				<div style="margin:10px 5px 10px 5px; float:left;"><span style="color: white;">Copyright &copy; MakeItUsable!</span></div>
+				<div style="margin:10px 5px 10px 5px; float:left;"><span style="color: white;">Copyright &copy; NewAppleStore!</span></div>
 				<div style="margin:10px 10px 10px 10px; float: right;">
 					<a href="about.htm" style="color: white;">About Us</a> <span style="color: white;">|</span> <a href="#" style="color: white;">Contact Us</a>
 				</div>
