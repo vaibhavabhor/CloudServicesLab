@@ -10,24 +10,52 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		
-		$('#login').click(function(event) {
+	//	$.getJSON("http://en.wikipedia.org/w/api.php?action=parse&prop=links&format=xml&page=Information_visualization", function(data) {
+	//		alert(data);
+	//	});
+		
+		
+		// $.ajax({ 
+		//	   type: "GET",
+		//	   dataType: "json",
+		//	   url: "http://en.wikipedia.org/w/api.php?action=parse&prop=links&format=xml&page=Information_visualization",
+		//	   success: function(data){        
+		//	     alert(data);
+		//	   }
+		//	});
+		
+		 $.ajax({
+			  dataType: "json",
+			  url: "http://en.wikipedia.org/w/api.php?action=parse&prop=links&format=json&page=Information_visualization" + '&callback=?',
+			  }).done(function ( data ) {
+			  // do my stuff
+				  //alert(data);
+				  var obj = $.parseJSON(data);
+				    $.each(obj, function() {
+				        lang += this['*'] + "<br/>";
+				    });
+
+			});
+		 
+		 
+		//$('#login').click(function(event) {
 			//Validate email
-			if(validEmail()) {
-				var email = $('#email').val();
-				var password = $('#password').val();
-				$.ajax({
-					url : "login.htm",
-				    type: "POST",
-				    data : "email=" + email + "&password=" + password,
-				    success:function(data, textStatus, jqXHR){
-				    	window.location.href="viewProjects.htm";
-				    },
-				    error: function(jqXHR, textStatus, errorThrown){
-				    	alert("Could not process request.. " + errorThrown);
-				    }
-				});
-			}
-		});
+			//if(validEmail()) {
+			//	var email = $('#email').val();
+			//	var password = $('#password').val();
+			//	$.ajax({
+			//		url : "login.htm",
+			//	    type: "POST",
+			//	    data : "email=" + email + "&password=" + password,
+			//	    success:function(data, textStatus, jqXHR){
+			//	    	window.location.href="viewProjects.htm";
+			//	    },
+			//	    error: function(jqXHR, textStatus, errorThrown){
+			//	    	alert("Could not process request.. " + errorThrown);
+			//	    }
+			//	});
+			//}
+		//});
 		
 		var validEmail = function() {
 			var email = $('#email');

@@ -36,12 +36,11 @@ $(document).ready(function () {
 	   var lname = $('#lastNameInput').val();
 	   var email = $('#emailInput').val();
 	   var password = $('#passwordInput').val();
-	   var userType = $("input:radio[name=userTypeInput]:checked").val();
-	   
+	   	   
 		$.ajax({
 			url : "signup.htm",
 		    type: "POST",
-		    data : "fname=" + fname + "&lname=" + lname + "&email=" + email + "&password=" + password + "&userType=" + userType,
+		    data : "fname=" + fname + "&lname=" + lname + "&email=" + email + "&password=" + password,
 		    success:function(data, textStatus, jqXHR){
 		    	window.location.href="viewProjects.htm";
 		    },
@@ -58,7 +57,7 @@ $(document).ready(function () {
 <body>
 	<div class="navbar navbar-inverse navbar-static-top">
 		<div id="headerNav" class="navbar-inner">
-			<a class="brand" href="/project-vars/"><span style="color: green; margin: 0px 10px 0px 10px;">MakeItUsable<span style="color: red;">!</span></span></a>
+			<a class="brand" href="/project-vars/"><span style="color: green; margin: 0px 10px 0px 10px;">New Apple Store<span style="color: red;">!</span></span></a>
 			<% if(session.getAttribute("user") != null) { %>
 			<ul class="nav">
 				<li><a href="/project-vars/viewProjects.htm" style="color: white;">View Projects</a></li>
@@ -147,23 +146,6 @@ $(document).ready(function () {
 								</tr>
 								<tr></tr>
 								<tr>
-									<td><h5>You are a</h5></td>
-									<td></td>
-									<td><div class="col-lg-6">
-   											 <div class="input-group">
-      											<span class="input-group-addon">
-        											<input name="userTypeInput" id="userTypeInputDeveloper" type="radio" class="required" value="0">
-      											</span>
-      											<h2 class="label label-primary">Project Owner</h2>
-      											<span>
-      												<input name="userTypeInput" id="userTypeInputTester" type="radio" class="required" value="1">
-      											</span>
-      											<h2 class="label label-primary">Tester</h2>
-    										</div><!-- /input-group -->
-  										</div><!-- /.col-lg-6 --></td>
-								</tr>
-								<tr></tr>
-								<tr>
 									<td></td>
 									<td></td>
 									<td><div class="col-sm-offset-2 col-sm-10">
@@ -180,7 +162,7 @@ $(document).ready(function () {
 
 	<div class="navbar navbar-inverse navbar-fixed-bottom">
 		<div class="navbar-inner" style="min-height: 70px;">
-				<div style="margin:10px 5px 10px 5px; float:left;"><span style="color: white;">Copyright &copy; MakeItUsable!</span></div>
+				<div style="margin:10px 5px 10px 5px; float:left;"><span style="color: white;">Copyright &copy; NewAppleStore!</span></div>
 				<div style="margin:10px 10px 10px 10px; float: right;">
 					<a href="about.htm" style="color: white;">About Us</a> <span style="color: white;">|</span> <a href="#" style="color: white;">Contact Us</a>
 				</div>

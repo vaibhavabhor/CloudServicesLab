@@ -104,7 +104,7 @@
 <body>
 	<div class="navbar navbar-inverse navbar-static-top">
 		<div id="headerNav" class="navbar-inner">
-			<a class="brand" href="/project-vars/"><span style="color: green; margin: 0px 10px 0px 10px;">MakeItUsable<span style="color: red;">!</span></span></a>
+			<a class="brand" href="/project-vars/"><span style="color: green; margin: 0px 10px 0px 10px;">New Apple Store<span style="color: red;">!</span></span></a>
 			<% if(session.getAttribute("user") != null) { %>
 			<ul class="nav">
 				<li><a href="/project-vars/viewProjects.htm" style="color: white;">View Projects</a></li>
@@ -368,7 +368,7 @@
 
 <div class="navbar navbar-inverse navbar-fixed-bottom">
 		<div class="navbar-inner" style="min-height: 70px;">
-				<div style="margin:10px 5px 10px 5px; float:left;"><span style="color: white;">Copyright &copy; MakeItUsable!</span></div>
+				<div style="margin:10px 5px 10px 5px; float:left;"><span style="color: white;">Copyright &copy; NewAppleStore!</span></div>
 				<div style="margin:10px 10px 10px 10px; float: right;">
 					<a href="about.htm" style="color: white;">About Us</a> <span style="color: white;">|</span> <a href="#" style="color: white;">Contact Us</a>
 				</div>

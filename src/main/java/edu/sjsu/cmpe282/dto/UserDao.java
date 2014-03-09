@@ -18,7 +18,7 @@ public class UserDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		      conn = DriverManager.getConnection("jdbc:mysql://localhost/CloudServices","root","root");
+		      conn = DriverManager.getConnection("mydbinstance.cizvqwfgh78q.us-west-1.rds.amazonaws.com:3306","applestore","applestore");
 		   }
 		   catch (SQLException e) {
 					e.printStackTrace();
