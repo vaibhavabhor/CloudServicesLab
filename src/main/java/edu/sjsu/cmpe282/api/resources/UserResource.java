@@ -20,7 +20,6 @@ public class UserResource {
 	@POST
 	@Path("/signup")
 	public User signUp(User user) throws ClassNotFoundException {
-		
 		System.out.print("user created: "+user.getFirstName());
 		userdao.addUser(user);
 		return user;//Response.status(201).entity("User Created : \n"+ user.getFirstName()).build();

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>MakeItUsable! - Sign Up</title>
+<title>AppleStore! - Sign Up</title>
 
 <%@include file="../includes.jsp" %>
 
@@ -36,9 +36,11 @@ $(document).ready(function () {
 	   var lname = $('#lastNameInput').val();
 	   var email = $('#emailInput').val();
 	   var password = $('#passwordInput').val();
-	   	   
+	   
+	   var URL = "http://localhost:14218/CloudServices/view/auth/user_signup.jsp";
+	   
 		$.ajax({
-			url : "signup.htm",
+			url : URL,
 		    type: "POST",
 		    data : "fname=" + fname + "&lname=" + lname + "&email=" + email + "&password=" + password,
 		    success:function(data, textStatus, jqXHR){
@@ -71,15 +73,6 @@ $(document).ready(function () {
 			<% } else { %>
 			<ul id="loggedInMenu" class="nav" style=" float:right; padding-right: 35px;">
 				<li class="dropdown" id="loggedInDown">
-					<c:choose>
-					    <c:when test="${user.isTester}">
-					    	<a class="dropdown-toggle" data-toggle="dropdown" href="#loggedInDown" style="color: white;">Hello ${user.firstName} <span class="caret"></span></a>
-					    </c:when>
-	 					<c:otherwise>
-	 						<a class="dropdown-toggle" data-toggle="dropdown" href="#loggedInDown" style="color: white;">Hello ${user.firstName} <span class="caret"></span></a>
-	 					</c:otherwise>
- 					</c:choose>
-					
 					<ul class="dropdown-menu">
 				      <li><a href="/project-vars/showProfile.htm">Profile</a></li>
 				      <li><a href="/project-vars/logout.htm">Logout</a></li>
