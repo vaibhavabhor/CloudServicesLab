@@ -1,13 +1,9 @@
 package edu.sjsu.cmpe282.dto;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.PropertiesCredentials;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
@@ -31,4 +27,5 @@ public class ShopingCartDao {
         client.putItem(itemRequest);
         item.clear();
 	}
+	
 }

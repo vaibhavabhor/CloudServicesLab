@@ -1,13 +1,28 @@
 package edu.sjsu.cmpe282.domain;
 
-public class AppleProduct {
+public class Order {
 
-	private int productId;
-	private String name;
+	private int orderId;
+	private String email;
 	private int catalogId;
-	private String description;
-	private float price;
+	private int productId;
 	private int quantity;
+	public int getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	private float price;
 	
 	public int getCatalogId() {
 		return catalogId;
@@ -17,14 +32,14 @@ public class AppleProduct {
 		this.catalogId = catalogId;
 	}
 
-	public AppleProduct(int id, String name, String description, float price, int quantity)
+	public Order(int id, String email, int catalogId, int productId, int quantity, float price)
 	{
 		super();
 		this.productId = id;
-		this.name = name;
-		this.description = description;
-		this.price = price;
+		this.email = email;
+		this.productId = productId;
 		this.quantity = quantity;
+		this.price = price;
 	}
 	
 	public int getProductId() {
@@ -35,18 +50,6 @@ public class AppleProduct {
 		this.productId = productId;
 	}
 
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
 	public float getPrice() {
 		return price;
 	}

@@ -4,12 +4,12 @@ import java.sql.*;
 import edu.sjsu.cmpe282.domain.RDSConnection;
 import edu.sjsu.cmpe282.domain.User;
 
-public class UserDao {
+public class OrderDao {
 		Connection conn = null;
 	    Statement stmt = null;
 	
 	// Constructor with JDBC connection
-	  public UserDao()
+	  public OrderDao()
 	  {
 		   try{
 		      try {
