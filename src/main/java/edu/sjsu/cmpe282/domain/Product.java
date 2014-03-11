@@ -1,6 +1,6 @@
 package edu.sjsu.cmpe282.domain;
 
-public class AppleProduct {
+public class Product {
 
 	private int productId;
 	private String name;
@@ -17,7 +17,7 @@ public class AppleProduct {
 		this.catalogId = catalogId;
 	}
 
-	public AppleProduct(int id, String name, String description, float price, int quantity)
+	public Product(int id, String name, String description, float price, int quantity)
 	{
 		super();
 		this.productId = id;
