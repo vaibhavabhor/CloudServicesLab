@@ -1,6 +1,7 @@
 package edu.sjsu.cmpe282.dto;
 import java.sql.*;
 
+import edu.sjsu.cmpe282.domain.Order;
 import edu.sjsu.cmpe282.domain.RDSConnection;
 import edu.sjsu.cmpe282.domain.User;
 
@@ -26,7 +27,7 @@ public class OrderDao {
 			}
 	  }
 	  
-	  public boolean addUser(User user)
+	  public boolean addOrder(Order order)
 	  {
 		  try {
 		 stmt = conn.createStatement();
@@ -38,26 +39,13 @@ public class OrderDao {
 		}
 		  return true;
 	  }
-	  
-//	  public boolean checkUser(User user)
-//	  {
-//		  try {
-//				 stmt = conn.createStatement();
-//				 String query = "
-//				 stmt.executeUpdate(query);
-//				} catch (SQLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//		  
-//	  }
-	  
-	  public boolean checkUser(User user){
+	   
+	  public boolean getOrdersForUser(User user){
 		  ResultSet rs;
 		  String origPasswd = null;
 		  	try {
 		  		stmt = conn.createStatement();
-		  		String query = "Select passwd from cloudservices.users where email = '"+user.getEmail()+"';";
+		  		String query = "Select * from cloudservices.users where email = '"+user.getEmail()+"';";
 		  		rs = stmt.executeQuery(query);
 		  		rs.next();
 		  		origPasswd = rs.getString("passwd");

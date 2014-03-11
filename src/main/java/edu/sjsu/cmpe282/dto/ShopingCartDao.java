@@ -15,7 +15,11 @@ import com.amazonaws.auth.PropertiesCredentials;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.ComparisonOperator;
+import com.amazonaws.services.dynamodbv2.model.Condition;
 import com.amazonaws.services.dynamodbv2.model.DeleteItemRequest;
 import com.amazonaws.services.dynamodbv2.model.DeleteItemResult;
 import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
@@ -23,6 +27,16 @@ import com.amazonaws.services.dynamodbv2.model.GetItemRequest;
 import com.amazonaws.services.dynamodbv2.model.GetItemResult;
 import com.amazonaws.services.dynamodbv2.model.PutItemRequest;
 import com.amazonaws.services.dynamodbv2.model.ReturnValue;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.ComparisonOperator;
+import com.amazonaws.services.dynamodbv2.model.Condition;
 
 import edu.sjsu.cmpe282.domain.Product;
 import edu.sjsu.cmpe282.domain.User;
@@ -35,6 +49,7 @@ public class ShopingCartDao {
 		AWSCredentials credentials = new PropertiesCredentials(ShopingCartDao.class.getResourceAsStream("AwsCredentials.properties"));
 		client = new AmazonDynamoDBClient(credentials);
 		client.setRegion(Region.getRegion(Regions.US_WEST_1)); 
+		DynamoDBMapper mapper = new DynamoDBMapper(client);
 	}
 	
 	public void addToShoppingCart(User user, Product orderToAdd)
@@ -81,9 +96,14 @@ public class ShopingCartDao {
 	
 	public ArrayList<Product> getItemsFromShoppingCart(User currentUser)
 	{
-		List<Product> productList;
+		List<Product> productList = new ArrayList<Product>();
+		HashMap<String, AttributeValue> key = null;
+		Product p;
+		int i=0;
 		try {
-            HashMap<String, AttributeValue> key = new HashMap<String, AttributeValue>();
+			while(i<5)
+			{
+            key = new HashMap<String, AttributeValue>();
 			key.put("userId", new AttributeValue().withS(currentUser.getEmail()));
 			key.put("productId", new AttributeValue().withN("1"));
 			
@@ -93,29 +113,29 @@ public class ShopingCartDao {
                 .withKey(key);
             
             GetItemResult result = client.getItem(getItemRequest);
-
-            // Check the response.
-            System.out.println("Printing item after retrieving it....");
-            
-            if(result.getItem().entrySet() != null){
-            for (Map.Entry<String, AttributeValue> item : result.getItem().entrySet()) 
+            p = new Product();
+            if(result.getItem().entrySet() != null)
             {
-                String attributeName = item.getKey();
-                AttributeValue value = item.getValue();
-                System.out.println(attributeName + " "
-                        + (value.getS() == null ? "" : "S=[" + value.getS() + "]")
-                        + (value.getN() == null ? "" : "N=[" + value.getN() + "]")
-                        + (value.getB() == null ? "" : "B=[" + value.getB() + "]")
-                        + (value.getSS() == null ? "" : "SS=[" + value.getSS() + "]")
-                        + (value.getNS() == null ? "" : "NS=[" + value.getNS() + "]")
-                        + (value.getBS() == null ? "" : "BS=[" + value.getBS() + "] \n"));
+            	for (Map.Entry<String, AttributeValue> item : result.getItem().entrySet()) 
+            	{
+	                String attributeName = item.getKey();
+	                AttributeValue value = item.getValue();
+	                
+	                if(attributeName.equals("price")) p.setPrice(Float.parseFloat(value.getS()));
+	                if(attributeName.equals("description")) p.setDescription(value.getS());
+	                if(attributeName.equals("name")) p.setName(value.getS());
+	                if(attributeName.equals("catalogId")) p.setCatalogId(Integer.parseInt(value.getN()));
+	                if(attributeName.equals("quantity")) p.setQuantity(Integer.parseInt(value.getN()));
+	                if(attributeName.equals("productId")) p.setProductId(Integer.parseInt(value.getN()));
+            	}
+            productList.add(p);
             }
-            }
+            
+			}
 		}
           catch (AmazonServiceException ase) {
                     System.err.println("Failed to retrieve item in " + "ShoppingCart");
         }
-		
-		return null;
+		return (ArrayList<Product>)productList;
 	}
 }

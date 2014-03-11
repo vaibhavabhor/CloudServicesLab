@@ -27,6 +27,10 @@ public class Product {
 		this.quantity = quantity;
 	}
 	
+	public Product() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getProductId() {
 		return productId;
 	}

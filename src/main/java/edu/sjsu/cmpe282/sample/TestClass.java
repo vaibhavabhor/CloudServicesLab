@@ -32,7 +32,8 @@ public class TestClass {
 		      
 		      //s.addToShoppingCart(u, p);
 		      
-		      s.getItemsFromShoppingCart(u);
+		      //s.getItemsFromShoppingCart(u);
+		      s.removeFromShoppingCart(currentUser);
 		   }
 		   catch (SQLException e) {
 					e.printStackTrace();
