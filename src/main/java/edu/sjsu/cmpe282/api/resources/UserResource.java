@@ -15,13 +15,13 @@ import edu.sjsu.cmpe282.dto.UserDao;
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserResource {
 	
-	private UserDao userdao = new UserDao();
+	private UserDao userDao = new UserDao();
 	
 	@POST
 	@Path("/signup")
 	public User signUp(User user) throws ClassNotFoundException {
-		System.out.print("user created: "+user.getFirstName());
-		userdao.addUser(user);
+		System.out.print("Inside Controller: user created: "+user.getFirstName());
+		userDao.addUser(user);
 		return user;//Response.status(201).entity("User Created : \n"+ user.getFirstName()).build();
 	}
 
@@ -29,6 +29,6 @@ public class UserResource {
 	@Path("/signin")
 	public boolean signIn(User user)
 	{
-		return userdao.checkUser(user);
+		return userDao.checkUser(user);
 	}
 }
