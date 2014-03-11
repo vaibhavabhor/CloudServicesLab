@@ -57,7 +57,6 @@ public class ShopingCartDao {
 	public void removeFromShoppingCart(User currentUser, int orderId)
 	{
 		HashMap filter = new HashMap();
-
 		 Condition hashKeyCondition = new Condition().withComparisonOperator(
 		 ComparisonOperator.EQ.toString()).withAttributeValueList(new AttributeValue().withN(Integer.toString(orderId)));
 
@@ -67,7 +66,4 @@ public class ShopingCartDao {
 		 QueryResult result = client.query(queryRequest);
 		 System.out.println("Query Result:" + result);
 	}
-	
-	
-	
 }
