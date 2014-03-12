@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=US-ASCII" pageEncoding="US-ASCII"%>
+<%@ page language="java" contentType="text/html; charset=US-ASCII"
+	pageEncoding="US-ASCII"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -7,11 +8,35 @@
 <title>Apple Store! - Products</title>
 
 
-<%@include file="../includes.jsp"%>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.js" /></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/bootstrap/bootstrap.min.js" /></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/bootstrap/bootstrap-dropdown.js" /></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/bootstrap/bootstrap-alert.js" /></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/bootstrap/bootstrap-button.js" /></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/bootstrap/bootstrap-carousel.js" /></script>
+<%-- 			<script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap/bootstrap-modal.js"/></script> --%>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/bootstrap/bootstrap-scrollspy.js" /></script>
+
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/bootstrap/bootstrap.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/css/bootstrap/bootstrap.min.css" />
+
 
 <script src="//code.jquery.com/jquery-1.9.1.js"></script>
 <script type="text/javascript"
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js"></script>
+	
+	
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#subForm").validate();
@@ -87,8 +112,8 @@
 					</ul>
 				</div>
 				<div class="tab-content">
-					<div class="tab-pane active" id="ShowiPhones">
-						<div id="UserProfile" style="margin: 0px 0px 10px 30px;">
+					<div class="tab-pane active" id="UserProfile">
+						<div id="profile" style="margin: 0px 0px 10px 30px;">
 							<div>
 								<h3>User Profile</h3>
 							</div>
@@ -185,7 +210,9 @@
 					</div>
 				</div>
 			</div>
-			<% } %>
+			<%
+				}
+			%>
 		</div>
 	</div>
 

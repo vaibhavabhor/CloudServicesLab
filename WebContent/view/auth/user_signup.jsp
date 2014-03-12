@@ -26,25 +26,41 @@ function checkPasswordMatch(){
     }
 }
 
+function formToJSON() {
+    return JSON.stringify({
+    "fname" : $('#firstNameInput').val(),
+    "lname" : $('#lastNameInput').val(),
+    "email": $('#emailInput').val(),
+    "passwd": $('#passwordInput').val(),
+    "address" : $('#addressInput').val(),
+    "pin" : $('#pinInput').val(),
+    "mobile" : $('#mobileInput').val(),
+    });
+}
+
 $(document).ready(function () {
 	
 	$("#reEnterPasswordInput").keyup(checkPasswordMatch());
    
    $('#signup').click(function(event) {
 	   
-	   var fname = $('#firstNameInput').val();
+	  /*  var fname = $('#firstNameInput').val();
 	   var lname = $('#lastNameInput').val();
 	   var email = $('#emailInput').val();
 	   var password = $('#passwordInput').val();
+	   var address = $('#addressInput').val();
+	   var pin = $('#pinInput').val();
+	   var mobile = $('#mobileInput').val(); */
 	   
-	   var URL = "http://localhost:14218/CloudServices/view/auth/user_signup.jsp";
+	   var URL = "users/signup";
 	   
 		$.ajax({
 			url : URL,
 		    type: "POST",
-		    data : "fname=" + fname + "&lname=" + lname + "&email=" + email + "&password=" + password,
+		    data: formToJSON(),
+		    //data : "fname=" + fname + "&lname=" + lname + "&email=" + email + "&password=" + password + "&address=" + address + "&pin=" + pin + "&mobile=" + mobile,
 		    success:function(data, textStatus, jqXHR){
-		    	window.location.href="viewProjects.htm";
+		    	window.location.href="users/signin.htm";
 		    },
 		    error: function(jqXHR, textStatus, errorThrown){
 		    	alert("Could not process request.. " + errorThrown);
@@ -57,7 +73,7 @@ $(document).ready(function () {
 
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-static-top">
+	<%-- <div class="navbar navbar-inverse navbar-static-top">
 		<div id="headerNav" class="navbar-inner">
 			<a class="brand" href="/project-vars/"><span style="color: green; margin: 0px 10px 0px 10px;">New Apple Store<span style="color: red;">!</span></span></a>
 			<% if(session.getAttribute("user") != null) { %>
@@ -81,7 +97,7 @@ $(document).ready(function () {
 			</ul>
 			<% } %>
 		</div>
-	</div>
+	</div> --%>
 	<div id="container" style="padding-top: 40px;">
 		<div class="container-fluid">
 			<div class="row-fluid">
@@ -136,6 +152,30 @@ $(document).ready(function () {
 											<input type="password" id="reEnterPasswordInput" name="reEnterPasswordInput" class="required" placeholder="Re-enter Password" onChange="checkPasswordMatch();">
 										</div></td>
 									<td><div class="registrationFormAlert" id="divCheckPasswordMatch"></div></td>
+								</tr>
+								<tr></tr>
+								<tr>
+									<td><h5>Address</h5></td>
+									<td></td>
+									<td><div class="input-group">
+											<input type="text" id="addressInput" class="required" placeholder="Address">
+										</div></td>
+								</tr>
+								<tr></tr>
+								<tr>
+									<td><h5>Zip</h5></td>
+									<td></td>
+									<td><div class="input-group">
+											<input type="text" id="pinInput" class="required" placeholder="Zip Code">
+										</div></td>
+								</tr>
+								<tr></tr>
+								<tr>
+									<td><h5>Mobile</h5></td>
+									<td></td>
+									<td><div class="input-group">
+											<input type="text" id="mobileInput" class="required" placeholder="Mobile">
+										</div></td>
 								</tr>
 								<tr></tr>
 								<tr>

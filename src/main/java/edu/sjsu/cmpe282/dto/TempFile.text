@@ -1,0 +1,3 @@
+//Insert new user into user table
+private static final String INSERT_USER = "INSERT into `applestore`.`user` (email, password, firstname, lastname, address, pin, mobile) values (?, ?, ?, ?, ?, ?, ?)";
+
