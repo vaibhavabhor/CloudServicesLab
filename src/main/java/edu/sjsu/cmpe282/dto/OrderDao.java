@@ -1,7 +1,10 @@
 package edu.sjsu.cmpe282.dto;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.sjsu.cmpe282.domain.Order;
+import edu.sjsu.cmpe282.domain.Product;
 import edu.sjsu.cmpe282.domain.RDSConnection;
 import edu.sjsu.cmpe282.domain.User;
 
@@ -31,32 +34,39 @@ public class OrderDao {
 	  {
 		  try {
 		 stmt = conn.createStatement();
-		 String query = "INSERT INTO `cloudservices`.`users` (`firstname`, `lastname`, `email`, `passwd`) VALUES ('" + user.getFirstName() + "', '" + user.getLastName() + "', '" + user.getEmail() + "', '" + user.getPasswd() + "');";
+		 String query = "INSERT INTO `cloudservices`.`users` (`id`, `email`, `catalogId`, `productId`, `quantity`, `price`) VALUES "
+		 		+ "('" + order.getOrderId() + "', '" + order.getEmail() + "', '" +order.getCatalogId() + "', '" + order.getProductId() 
+		 		+ "', '" + order.getQuantity() + "', '"+ order.getPrice() + "');";
 		 stmt.executeUpdate(query);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		  return true;
 	  }
 	   
-	  public boolean getOrdersForUser(User user){
+	  public ArrayList<Order> getOrdersForUser(User user){
 		  ResultSet rs;
+		  List<Order> orderList = new ArrayList<Order>();
 		  String origPasswd = null;
 		  	try {
 		  		stmt = conn.createStatement();
-		  		String query = "Select * from cloudservices.users where email = '"+user.getEmail()+"';";
+		  		String query = "Select * from cloudservices.Order where email = '"+user.getEmail()+"';";
 		  		rs = stmt.executeQuery(query);
 		  		rs.next();
 		  		origPasswd = rs.getString("passwd");
 		  		System.out.println("Password from db : "+ origPasswd );
 		  		System.out.println("Password entered : "+user.getPasswd());
+		  		
+		  		testingRating.setDeveloperId(rs.getInt("developer_id"));
+				testingRating.setRating(rs.getFloat("rating"));
+				testingRating.setDate(rs.getString("ratingdate"));
+				
 		  		} catch (SQLException e) {
 		  			// TODO Auto-generated catch block
 		  			e.printStackTrace();
 		  		}
-
-		  		return user.getPasswd().equals(origPasswd);
+		  		return (ArrayList<Order>)orderList;
+		  		//return user.getPasswd().equals(origPasswd);
 		  }
 	  
 	  
